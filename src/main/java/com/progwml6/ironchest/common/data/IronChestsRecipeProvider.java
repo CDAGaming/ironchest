@@ -8,7 +8,9 @@ import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.RequirementsStrategy;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
+import net.minecraft.core.Registry;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -30,7 +32,7 @@ import java.util.function.Consumer;
 
 public class IronChestsRecipeProvider extends RecipeProvider implements IConditionBuilder {
 
-  public static final Tags.IOptionalNamedTag<Item> INGOTS_COPPER = tag("ingots/copper");
+  public static final TagKey<Item> INGOTS_COPPER = tag("ingots/copper");
 
   public IronChestsRecipeProvider(DataGenerator generatorIn) {
     super(generatorIn);
@@ -284,7 +286,7 @@ public class IronChestsRecipeProvider extends RecipeProvider implements IConditi
     return new ResourceLocation(IronChests.MOD_ID, id);
   }
 
-  private static Tags.IOptionalNamedTag<Item> tag(String name) {
-    return ItemTags.createOptional(new ResourceLocation("forge", name));
+  private static TagKey<Item> tag(String name) {
+    return TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation("forge", name));
   }
 }
